@@ -34,11 +34,15 @@ export class SearchComponent implements OnInit {
   // web socket connection used to subscribe to state delta changes
   webSocket: WebSocket;
 
+  // 트랜잭션 패밀리의 주소 - 
+  prefixes: string[];
+
   webSocketUrl = environment.apiURL.replace(/^(https?):\/\//, 'ws:') + '/subscriptions';
 
   ngOnInit() {
     this.states = [];
     this.addresses = [];
+    this.prefixes = [];
   }
 
   ngOnDestroy() {
@@ -111,9 +115,11 @@ export class SearchComponent implements OnInit {
     this.webSocket.onopen = () => {
       this.webSocket.send(JSON.stringify({
         'action': 'subscribe',
-        'address_prefixes': addresses
+        'address_prefixes': addresses // 어드레스를 줄게. 구독할테니
       }))
     }
+
+    this.getblockWebsocket();
 
     this.webSocket.onmessage = (message) => {
       let newStates = this.parseDeltaSubscriptionMessage(message);
@@ -160,6 +166,7 @@ export class SearchComponent implements OnInit {
 
   /**
    * Unsubscribes to state changes.
+   * 웹소켓 연결을 끊습니다.
    */
   closeWebsocket(): void {
     if (this.webSocket) {
@@ -170,4 +177,22 @@ export class SearchComponent implements OnInit {
     }
     this.webSocket = null;
   }
+
+  /**
+   * Serch the submit block ID - state deltas & block commit Event.
+   * 블록 아이디를 이용해 이전 블록의 이벤트를 불러옵니다. 
+   * 매개변수로 주어야 할 것 : 검색하고자 하는 블록의 아이디
+   */
+
+  getblockWebsocket(): void {
+    if (this.webSocket) {
+      this.webSocket.send(JSON.stringify({
+        'action': 'get_block_deltas',
+        'block_id': '60a956ff931dc36483ba6bd87ef7b92f85fcbe2754a0e8471d8d5a6cbce240e65082c674a2bc5075e1744f179f6e58a225665b1911d0b56b8f5b00e5e9a28124',
+        'address_prefixes': ['000000']
+      }));
+    }
+    this.webSocket = null;
+  }
+
 }
