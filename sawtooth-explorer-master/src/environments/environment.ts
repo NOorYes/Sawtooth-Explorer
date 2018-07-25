@@ -24,6 +24,6 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://localhost:8090',
+  apiURL: 'http://210.94.194.82:48090',
   apiTimeout: 3000
 };

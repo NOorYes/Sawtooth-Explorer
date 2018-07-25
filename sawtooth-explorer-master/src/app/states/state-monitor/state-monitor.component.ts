@@ -19,12 +19,14 @@ import { Component, OnInit, OnDestroy, Input,
   HostListener } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { Observable, Subject } from 'rxjs/Rx';
+import { Observable, Subject } from 'rxjs/Rx'; //  RxJS는 이벤트 스트림과 데이터를 쉽게 만들고 다룰 수 있도록 도우는 라이브러리이다.
+// 데이터를 병합/mush/스플릿 하는 작업을 할 수 있고, 데이터를 순회하면서 무언가를 할 수 있다.
+import { environment } from '../../../environments/environment'; // 환경(연결할 API의 주소를 세팅)
 
-import { environment } from '../../../environments/environment';
 
 /**
  * Component for showing state deltas as they are received from a websocket.
+ * -> 웹 소켓에서 받은 상태 델타를 표시하기 위한 컴포넌트.
  */
 @Component({
   selector: 'app-state-monitor',
@@ -42,6 +44,7 @@ export class StateMonitorComponent implements OnInit, OnDestroy {
   constructor(public http:Http) {}
 
   // list of state deltas from addresses subscribed to
+  // 주시하고 있는 주소의 스테이트 델타의 리스트
   @Input()
   states: object[];
 
