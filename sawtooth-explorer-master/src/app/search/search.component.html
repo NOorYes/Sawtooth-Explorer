@@ -25,14 +25,14 @@
           <th></th>
         </tr>
       </thead>
-      <tbody *ngIf="!addresses.length">
+      <tbody *ngIf="!block_ID.length">
         <tr>
           <td colspan="2"><em>No Block ID that want to search</em></td>
         </tr>
       </tbody>
-      <tbody *ngIf="addresses.length">
-        <tr *ngFor="let address of addresses; let idx = index" class="address-row">
-          <td>{{ address }}</td>
+      <tbody *ngIf="block_ID.length">
+        <tr *ngFor="let address of block_ID; let idx = index" class="block_ID-row">
+          <td>{{ block_ID }}</td>
           <td class="text-right">
             <button mat-icon-button class="mat-button delete-button" (click)="removeAddress(idx)">
               <mat-icon class="address-rm">close</mat-icon>
@@ -59,6 +59,6 @@
 
     <hr/>
 
-    <data-table [data]="states" [type]="'Block details'"></data-table>
+    <data-table [data]="states" [type]="'States'"></data-table>
   </div>
 </section>
