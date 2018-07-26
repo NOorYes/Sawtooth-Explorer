@@ -38,24 +38,23 @@ export class SearchComponent implements OnInit {
   webSocket: WebSocket;
 
   // 블록 아이디 - 지난 이벤트를 불러오는 것에 사용.
-  block_ID: string[];
+  block_ID: string;
 
   webSocketUrl = environment.apiURL.replace(/^(https?):\/\//, 'ws:') + '/subscriptions'; // 프록시에 연결 
 
   ngOnInit() {
     this.states = [];
     this.addresses = [];
-    this.block_ID = [];
   } // 변수를 초기화한다. 
 
   ngOnDestroy() {
-    this.closeWebsocket();
+    this.closeWebsocket(); // 소멸자, 웹소켓을 닫는다.
   }
 
   @HostListener('window:unload', ['$event'])
   unloadHandler(event) {
     // make sure websocket is closed if the page closes
-    this.closeWebsocket();
+    this.closeWebsocket(); // 페이지 꺼지면 웹소켓을 확실히 닫아버리기 위해.. 
   }
 
     /**
@@ -63,7 +62,7 @@ export class SearchComponent implements OnInit {
    * @param address {string} - address to be added to the list of
    *   addresses subscribed to
    */
-  addAddress(address: string) {
+  addAddress(address: string) { // 어드레스를 추가하는 메소드 
     // if no address is sent, no need to make any changes
     if (!address) return;
 
@@ -114,18 +113,16 @@ export class SearchComponent implements OnInit {
     if (!addresses || !addresses.length) return;
 
     // subscribe to state changes from specified addresses
-    this.webSocket = new WebSocket(this.webSocketUrl);
+    this.webSocket = new WebSocket(this.webSocketUrl); // 새로운 웹소켓 생성.
     this.webSocket.onopen = () => {
       this.webSocket.send(JSON.stringify({
         'action': 'subscribe',
-        'address_prefixes': addresses // 어드레스를 줄게. 구독할테니
+        'address_prefixes': addresses // 어드레스를 줄게. 여기를 구독할꺼야 
       }))
     }
 
-    this.getblockWebsocket();
-
-    this.webSocket.onmessage = (message) => {
-      let newStates = this.parseDeltaSubscriptionMessage(message);
+    this.webSocket.onmessage = (message) => { // 웹소켓에 메시지가 도착함 
+      let newStates = this.parseDeltaSubscriptionMessage(message); // 파싱해서 보여줌
       if (newStates && newStates.length) {
         this.states = this.states.concat(newStates);
       }
@@ -188,14 +185,28 @@ export class SearchComponent implements OnInit {
    * 트랜잭션 패밀리의 prefixes.
    */
 
-  getblockWebsocket(): void {
-    if (this.webSocket) {
+  getblockWebsocket(block_ID: string): void {
+    this.webSocket = new WebSocket(this.webSocketUrl); // 새로운 웹소켓 생성.
+    this.webSocket.onopen = () => {
+      this.webSocket.send(JSON.stringify({
+        'action': 'subscribe',
+        'address_prefixes': 'a027b1' // 어드레스를 줄게. 여기를 구독할꺼야 
+      }))
+    
       this.webSocket.send(JSON.stringify({
         'action': 'get_block_deltas',
-        'block_id': '60a956ff931dc36483ba6bd87ef7b92f85fcbe2754a0e8471d8d5a6cbce240e65082c674a2bc5075e1744f179f6e58a225665b1911d0b56b8f5b00e5e9a28124',
-        'address_prefixes': ['000000']
+        'block_id': block_ID,
+        'address_prefixes': ['a027b1'] 
       }));
     }
+
+    this.webSocket.onmessage = (message) => { // 웹소켓에 메시지가 도착함 
+      let newStates = this.parseDeltaSubscriptionMessage(message); // 파싱해서 보여줌
+      if (newStates && newStates.length) {
+        this.states = this.states.concat(newStates);
+      }
+    }
   }
+
 
 }
