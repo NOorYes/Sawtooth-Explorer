@@ -57,6 +57,7 @@ import { TransactionComponent } from './transactions/transaction/transaction.com
 /* STATE MONITORING COMPONENTS */
 import { StateMonitorComponent } from './states/state-monitor/state-monitor.component';
 import { StateComponent } from './states/state/state.component';
+import { SearchComponent } from './search/search.component';
 
 /* TABLE COMPONENTS */
 import { DataTableComponent } from './data-table/data-table.component';
@@ -69,7 +70,7 @@ import { DynamicViewDirective } from './dynamic-views/dynamic-view-directive/dyn
 import { DynamicViewLoaderComponent } from './dynamic-views/dynamic-view-loader/dynamic-view-loader.component';
 import { Base64DecodePipe } from './pipes/base64-decode/base64-decode.pipe';
 import { UIAceDataTransformPipe } from './pipes/ui-ace-data-transform/ui-ace-data-transform.pipe';
-import { SearchComponent } from './search/search.component';
+
 
 
 @NgModule({

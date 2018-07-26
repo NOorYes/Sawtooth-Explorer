@@ -21,7 +21,7 @@
     <table class="full-width">
       <thead>
         <tr>
-          <th>Searching Block list </th>
+          <th> Searching Block list </th>
           <th></th>
         </tr>
       </thead>
@@ -45,13 +45,13 @@
     <div class="row">
        <div class="ten columns">
         <mat-form-field class="full-width">
-          <input [(ngModel)]="newAddress" 
+          <input [(ngModel)]="Block_ID" 
             matInput class="full-width"
             placeholder=" add block ID" />
         </mat-form-field>
       </div>
       <div class="two columns"> 
-        <button mat-button class="mat-raised-button full-width add-button" (click)="addAddress(newAddress)">
+        <button mat-button class="mat-raised-button full-width add-button" (click)="getblockWebsocket(Block_ID)">
           Search
         </button>
       </div>

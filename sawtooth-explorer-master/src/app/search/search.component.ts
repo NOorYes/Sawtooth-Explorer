@@ -26,24 +26,27 @@ export class SearchComponent implements OnInit {
   statesObservable: Subject<object>;
 
   // list of addresses to monitor for state delta changes
+  // 구독하고자 하는 어드레스의 목록, FTA의 경우는 어드레스가 한개니까. 
   addresses: string[];
 
   // model for user to add new address to list of monitored addresses
+  // 어드레스 배열에 넣을 새로운 어드레스 
   newAddress: string;
 
   // web socket connection used to subscribe to state delta changes
+  // 웹소켓을 사용하여 구독함. 근데 웹 소켓은 한계가 존재하므로, -> ZMQ를 사용해야 한다.
   webSocket: WebSocket;
 
-  // 트랜잭션 패밀리의 주소 - 
-  prefixes: string[];
+  // 블록 아이디 - 지난 이벤트를 불러오는 것에 사용.
+  block_ID: string[];
 
-  webSocketUrl = environment.apiURL.replace(/^(https?):\/\//, 'ws:') + '/subscriptions';
+  webSocketUrl = environment.apiURL.replace(/^(https?):\/\//, 'ws:') + '/subscriptions'; // 프록시에 연결 
 
   ngOnInit() {
     this.states = [];
     this.addresses = [];
-    this.prefixes = [];
-  }
+    this.block_ID = [];
+  } // 변수를 초기화한다. 
 
   ngOnDestroy() {
     this.closeWebsocket();
@@ -182,6 +185,7 @@ export class SearchComponent implements OnInit {
    * Serch the submit block ID - state deltas & block commit Event.
    * 블록 아이디를 이용해 이전 블록의 이벤트를 불러옵니다. 
    * 매개변수로 주어야 할 것 : 검색하고자 하는 블록의 아이디
+   * 트랜잭션 패밀리의 prefixes.
    */
 
   getblockWebsocket(): void {
@@ -192,7 +196,6 @@ export class SearchComponent implements OnInit {
         'address_prefixes': ['000000']
       }));
     }
-    this.webSocket = null;
   }
 
 }
