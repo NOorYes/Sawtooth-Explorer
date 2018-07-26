@@ -86,7 +86,7 @@ export class SearchComponent implements OnInit {
     this.newBlock_ID = ''; // 웹에서 새 블록 이름을 넣었으니 초기화 해 준다.
 
     // restart state delta subscription with newly added address included
-    this.resetWebsocket(this.blocks);
+    this.resetWebsocket_b(this.blocks); // 블록을 리셋한다.
   }
 
   /**
@@ -109,6 +109,20 @@ export class SearchComponent implements OnInit {
     this.resetWebsocket(this.addresses);
   }
 
+  removeBlocks(index: number) {
+    // only remove address from existing address list at valid index
+    if (!this.blocks || this.blocks.length <= index) return;
+
+    // check index bounds
+    if (index < 0 || index >= this.blocks.length) return;
+
+    // remove item at index
+    this.blocks.splice(index, 1);
+
+    // restart state delta subscription with removed address not included
+    this.resetWebsocket_b(this.blocks);
+  }
+
   /**
    * Reset any existing websocket connection with new subscription information.
    * @param addresses {string[]} - list of addresses to subscribe to via
@@ -118,6 +132,12 @@ export class SearchComponent implements OnInit {
     // reset websocket connection
     this.closeWebsocket();
     this.openWebsocket(this.addresses);
+  }
+
+  resetWebsocket_b(blocks: string[]) {
+    // reset websocket connection
+    this.closeWebsocket();
+    this.openWebsocket_b(this.blocks);
   }
 
   /**
@@ -135,6 +155,34 @@ export class SearchComponent implements OnInit {
         'action': 'subscribe',
         'address_prefixes': addresses // 어드레스를 줄게. 여기를 구독할꺼야 
       }))
+    }
+
+    this.webSocket.onmessage = (message) => { // 웹소켓에 메시지가 도착함 
+      let newStates = this.parseDeltaSubscriptionMessage(message); // 파싱해서 보여줌
+      if (newStates && newStates.length) {
+        this.states = this.states.concat(newStates);
+      }
+    }
+  }
+
+  openWebsocket_b(blocks: string[]): void {
+    if (!blocks || !blocks.length) return;
+
+    // subscribe to state changes from specified addresses
+    this.webSocket = new WebSocket(this.webSocketUrl); // 새로운 웹소켓 생성.
+    this.webSocket.onopen = () => {
+      this.webSocket.send(JSON.stringify({
+        'action': 'subscribe',
+        'address_prefixes': 'a027b1' // FTA의 고정 어드레스.
+      }))
+    } // 일단 여기까지 웹소켓을 통해서 밸리데이터에 구독요청 해주시고, 
+
+    if (this.webSocket) {
+      this.webSocket.send(JSON.stringify({
+        'action': 'get_block_deltas',
+        'block_id': blocks,
+        'address_prefixes': ['a027b1'] // 블록 아이디를 줄게. 블록의 정보를 내놔.
+      }));
     }
 
     this.webSocket.onmessage = (message) => { // 웹소켓에 메시지가 도착함 
@@ -208,7 +256,7 @@ export class SearchComponent implements OnInit {
         'action': 'subscribe',
         'address_prefixes': 'a027b1' // 어드레스를 줄게. 여기를 구독할꺼야 -> 현재는 FTA 고정값으로 먹였음. 
       }))
-    
+      
       this.webSocket.send(JSON.stringify({
         'action': 'get_block_deltas',
         'block_id': block_ID,
