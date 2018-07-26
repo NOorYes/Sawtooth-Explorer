@@ -38,13 +38,18 @@ export class SearchComponent implements OnInit {
   webSocket: WebSocket;
 
   // 블록 아이디 - 지난 이벤트를 불러오는 것에 사용.
-  block_ID: string;
+  newBlock_ID: string;
+
+  // 블록스 : 블록의 목록
+  blocks: string[];
+
 
   webSocketUrl = environment.apiURL.replace(/^(https?):\/\//, 'ws:') + '/subscriptions'; // 프록시에 연결 
 
   ngOnInit() {
     this.states = [];
     this.addresses = [];
+    this.blocks = [];
   } // 변수를 초기화한다. 
 
   ngOnDestroy() {
@@ -66,11 +71,22 @@ export class SearchComponent implements OnInit {
     // if no address is sent, no need to make any changes
     if (!address) return;
 
-    this.addresses.push(address);
+    this.addresses.push(address); // 어드레스 배열에 어드레스를 추가한다.
     this.newAddress = '';
 
     // restart state delta subscription with newly added address included
     this.resetWebsocket(this.addresses);
+  }
+
+  addBlock(block_id: string) { // 블록을 추가하는 메소드 
+    // if no address is sent, no need to make any changes
+    if (!block_id) return;
+
+    this.blocks.push(block_id); // 블록 배열에 블록을 추가한다.
+    this.newBlock_ID = ''; // 웹에서 새 블록 이름을 넣었으니 초기화 해 준다.
+
+    // restart state delta subscription with newly added address included
+    this.resetWebsocket(this.blocks);
   }
 
   /**
@@ -190,13 +206,13 @@ export class SearchComponent implements OnInit {
     this.webSocket.onopen = () => {
       this.webSocket.send(JSON.stringify({
         'action': 'subscribe',
-        'address_prefixes': 'a027b1' // 어드레스를 줄게. 여기를 구독할꺼야 
+        'address_prefixes': 'a027b1' // 어드레스를 줄게. 여기를 구독할꺼야 -> 현재는 FTA 고정값으로 먹였음. 
       }))
     
       this.webSocket.send(JSON.stringify({
         'action': 'get_block_deltas',
         'block_id': block_ID,
-        'address_prefixes': ['a027b1'] 
+        'address_prefixes': ['a027b1'] // 블록 아이디를 줄게. 블록의 정보를 내놔.
       }));
     }
 

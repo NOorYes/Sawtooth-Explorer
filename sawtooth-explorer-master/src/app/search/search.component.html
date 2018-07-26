@@ -16,26 +16,27 @@
 
 <section class="detail">
   <div class="container">
-    <h2 class="h2">Block validate</h2>
+    <h2 class="h2">Block Validate</h2> <!-- 이 단의 제목.. -->
 
     <table class="full-width">
       <thead>
         <tr>
-          <th> Searching Block list </th>
+          <th>Monitored Address</th>
           <th></th>
         </tr>
       </thead>
-      <tbody *ngIf="!block_ID.length">
+      <tbody *ngIf="!blocks.length">
         <tr>
-          <td colspan="2"><em>No Block ID that want to search</em></td>
+          <td colspan="2"><em>No Block being watched for state changes.</em></td>
         </tr>
       </tbody>
-      <tbody *ngIf="block_ID.length">
-        <tr *ngFor="let address of block_ID; let idx = index" class="block_ID-row">
-          <td>{{ block_ID }}</td>
+      <tbody *ngIf="blocks.length">
+        <tr *ngFor="let block of blocks; let idx = index" class="block-row">
+          <td>{{ block }}</td>
+          <!-- 어드레스의 배열을 출력한다.. -->
           <td class="text-right">
-            <button mat-icon-button class="mat-button delete-button" (click)="removeAddress(idx)">
-              <mat-icon class="address-rm">close</mat-icon>
+            <button mat-icon-button class="mat-button delete-button" (click)="removeBlocks(idx)">
+              <mat-icon class="block-rm">close</mat-icon>
             </button>
           </td>
         </tr>
@@ -45,14 +46,14 @@
     <div class="row">
        <div class="ten columns">
         <mat-form-field class="full-width">
-          <input [(ngModel)]="block_ID" 
+          <input [(ngModel)]="newBlock_ID" 
             matInput class="full-width"
-            placeholder=" add block ID" />
+            placeholder="Add block_ID" />
         </mat-form-field>
       </div>
       <div class="two columns"> 
-        <button mat-button class="mat-raised-button full-width add-button" (click)="getblockWebsocket(block_ID)">
-          Search
+        <button mat-button class="mat-raised-button full-width add-button" (click)="addBlock(newBlock_ID)">
+          search
         </button>
       </div>
     </div>
