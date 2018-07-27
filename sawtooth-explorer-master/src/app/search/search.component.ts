@@ -177,13 +177,13 @@ export class SearchComponent implements OnInit {
       }))
     } // 일단 여기까지 웹소켓을 통해서 밸리데이터에 구독요청 해주시고, 
 
-    this.webSocket.onopen = () => {
+    this.webSocket.onopen = () => 
       this.webSocket.send(JSON.stringify({
         'action': 'get_block_deltas',
         'block_id': blocks,
         'address_prefixes': ['a027b1'] // 블록 아이디를 줄게. 블록의 정보를 내놔.
       }));
-    }
+    
 
     this.webSocket.onmessage = (message) => { // 웹소켓에 메시지가 도착함 
       let newStates = this.parseDeltaSubscriptionMessage(message); // 파싱해서 보여줌
