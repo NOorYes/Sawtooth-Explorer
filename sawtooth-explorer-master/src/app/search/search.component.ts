@@ -171,20 +171,18 @@ export class SearchComponent implements OnInit {
     // subscribe to state changes from specified addresses
     this.webSocket = new WebSocket(this.webSocketUrl); // 새로운 웹소켓 생성.
     this.webSocket.onopen = () => {
-      this.webSocket.send(JSON.stringify({
+    /*  this.webSocket.send(JSON.stringify({
         'action': 'subscribe',
         'address_prefixes': 'a027b1' // FTA의 고정 어드레스.
       }))
     } // 일단 여기까지 웹소켓을 통해서 밸리데이터에 구독요청 해주시고, 
-
-    this.webSocket.close();
-
+*/
     this.webSocket.send(JSON.stringify({
       'action': 'get_block_deltas',
       'block_id': blocks,
       'address_prefixes': ['a027b1'] // 블록 아이디를 줄게. 블록의 정보를 내놔.
     }));
-
+  }
     this.webSocket.onmessage = (message) => { // 웹소켓에 메시지가 도착함 
       let newStates = this.parseDeltaSubscriptionMessage(message); // 파싱해서 보여줌
       if (newStates && newStates.length) {
