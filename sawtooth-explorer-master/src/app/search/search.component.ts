@@ -184,9 +184,9 @@ export class SearchComponent implements OnInit {
       'address_prefixes': 'a027b1' // 블록 아이디를 줄게. 블록의 정보를 내놔. 대괄호
     }));
   }
-  
+    console.log(this.webSocket.onmessage);
+
     this.webSocket.onmessage = (message) => { // 웹소켓에 메시지가 도착함 
-      console.log(message);
       let newStates = this.parseDeltaSubscriptionMessage(message); // 파싱해서 보여줌
       if (newStates && newStates.length) {
         this.states = this.states.concat(newStates);
