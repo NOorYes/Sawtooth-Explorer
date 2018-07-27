@@ -180,7 +180,7 @@ export class SearchComponent implements OnInit {
     this.webSocket.send(JSON.stringify({
       'action': 'get_block_deltas',
       'block_id': blocks,
-      'address_prefixes': ['a027b1'] // 블록 아이디를 줄게. 블록의 정보를 내놔.
+      'address_prefixes': 'a027b1' // 블록 아이디를 줄게. 블록의 정보를 내놔. 대괄호
     }));
   }
     this.webSocket.onmessage = (message) => { // 웹소켓에 메시지가 도착함 
