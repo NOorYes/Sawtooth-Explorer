@@ -167,7 +167,7 @@ export class SearchComponent implements OnInit {
 
   openWebsocket_b(blocks: string[]): void {
     if (!blocks || !blocks.length) return;
-
+ 
     // subscribe to state changes from specified addresses
     this.webSocket = new WebSocket(this.webSocketUrl); // 새로운 웹소켓 생성.
     this.webSocket.onopen = () => {
@@ -177,7 +177,7 @@ export class SearchComponent implements OnInit {
       }))
     } // 일단 여기까지 웹소켓을 통해서 밸리데이터에 구독요청 해주시고, 
 
-    if (this.webSocket) {
+    this.webSocket.onopen = () => {
       this.webSocket.send(JSON.stringify({
         'action': 'get_block_deltas',
         'block_id': blocks,
