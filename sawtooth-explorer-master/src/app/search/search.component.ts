@@ -186,6 +186,7 @@ export class SearchComponent implements OnInit {
   }
   
     this.webSocket.onmessage = (message) => { // 웹소켓에 메시지가 도착함 
+      console.log(message);
       let newStates = this.parseDeltaSubscriptionMessage(message); // 파싱해서 보여줌
       if (newStates && newStates.length) {
         this.states = this.states.concat(newStates);
