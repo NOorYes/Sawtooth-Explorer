@@ -177,13 +177,13 @@ export class SearchComponent implements OnInit {
       }))
     } // 일단 여기까지 웹소켓을 통해서 밸리데이터에 구독요청 해주시고, 
 
-    this.webSocket.onopen = () => {
+    //this.webSocket.onopen = () => {
     this.webSocket.send(JSON.stringify({
       'action': 'get_block_deltas',
       'block_id': '1a963d06b04ecc773abde03d0f3bf02bff227996afd351b9e1e7c43116bb91424be684ea46d99be2f843363a850957f97a9825e7db7912ac7dc165a407c498c9',
-      'address_prefixes': ['a027b1'] // 블록 아이디를 줄게. 블록의 정보를 내놔. 대괄호
+      'address_prefixes': 'a027b1' // 블록 아이디를 줄게. 블록의 정보를 내놔. 대괄호
     }));
-  }
+  //}
     console.log(this.webSocket.onmessage);
 
     this.webSocket.onmessage = (message) => { // 웹소켓에 메시지가 도착함 
