@@ -180,8 +180,8 @@ export class SearchComponent implements OnInit {
     this.webSocket.onopen = () => {
     this.webSocket.send(JSON.stringify({
       'action': 'get_block_deltas',
-      'block_id': this.newBlock_ID ,
-      'address_prefixes': 'a027b1' // 블록 아이디를 줄게. 블록의 정보를 내놔. 대괄호
+      'block_id': '1a963d06b04ecc773abde03d0f3bf02bff227996afd351b9e1e7c43116bb91424be684ea46d99be2f843363a850957f97a9825e7db7912ac7dc165a407c498c9',
+      'address_prefixes': ['a027b1'] // 블록 아이디를 줄게. 블록의 정보를 내놔. 대괄호
     }));
   }
     console.log(this.webSocket.onmessage);
