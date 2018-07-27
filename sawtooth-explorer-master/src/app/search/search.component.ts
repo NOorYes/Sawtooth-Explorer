@@ -83,7 +83,7 @@ export class SearchComponent implements OnInit {
     if (!block_id) return;
 
     this.blocks.push(block_id); // 블록 배열에 블록을 추가한다.
-    this.newBlock_ID = ''; // 웹에서 새 블록 이름을 넣었으니 초기화 해 준다.
+    //this.newBlock_ID = ''; // 웹에서 새 블록 이름을 넣었으니 초기화 해 준다.
 
     // restart state delta subscription with newly added address included
     this.resetWebsocket_b(this.blocks); // 블록을 리셋한다.
