@@ -60,10 +60,11 @@ export class StateComponent implements OnInit {
    */
   updatePayloadData(payloadData: any): void {
     if (payloadData) {
-      payloadData.value = this.parsePayloadValue(payloadData.value);
+      payloadData.value = this.parsePayloadValue(payloadData.value); // 밸류값을 디코딩 뒤 json객체로 변환해서 집어넣음. 
       // if valid results are parsed, update payload JSON
       if (payloadData.value) {
-        this.payloadJSON = JSON.stringify(payloadData, null, 2);
+        this.payloadJSON = JSON.stringify(payloadData, null, 2); // json을 string객체로 만들어서 넣음.
+        this.payloadJSON = this.payloadJSON.replace("\\u0000", "") // 이상한 문자들 제거.
       } else {
         this.payloadJSON = '{}';
       }
@@ -84,7 +85,7 @@ export class StateComponent implements OnInit {
 
     // try to parse payload value as JSON; otherwise, leave as-is
     try {
-      fromBase64 = JSON.parse(fromBase64);
+      fromBase64 = JSON.parse(fromBase64); // JSON 객체로 변환 
     } catch (e) {}
 
     return fromBase64;
