@@ -16,6 +16,7 @@
  */
 
 import { Pipe, PipeTransform } from '@angular/core';
+import { Base64 } from '@types/js-base64'; // 디코더 
 
 /**
  * Used to decode base64 data within templates.
@@ -45,10 +46,12 @@ export class Base64DecodePipe implements PipeTransform {
     // attempt to decode from base64 if needed
     if (base64Regex.test(value)) { // 패턴이 있는지를 봄. 즉 base64로 인코딩된 문자인지를 탐지하는 것. 
       try {
-        decodedValue = atob(value); // atob : base64 디코딩 메소드 
+        // decodedValue = atob(value); // atob : base64 디코딩 메소드 
+        decodedValue = Base64.decode(value);
       } catch(e) {
       }
     }
+
     console.log(decodedValue); // 테스트용
 
     return decodedValue; // 여기서 리턴하는데, 
