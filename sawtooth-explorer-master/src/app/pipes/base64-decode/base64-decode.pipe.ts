@@ -16,7 +16,7 @@
  */
 
 import { Pipe, PipeTransform } from '@angular/core';
-import { Base64 } from '@types/js-base64'; // 디코더 
+import { Base64 } from 'js-base64'; // 디코더 
 
 /**
  * Used to decode base64 data within templates.
