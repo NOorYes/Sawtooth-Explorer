@@ -16,9 +16,9 @@
  */
 
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
-import { Base64DecodePipe } from '../../pipes/base64-decode/base64-decode.pipe';
+import { Base64DecodePipe } from '../../pipes/base64-decode/base64-decode.pipe'; // 디코더 파이프 
 import { UIAceDataTransformPipe } from
-  '../../pipes/ui-ace-data-transform/ui-ace-data-transform.pipe';
+  '../../pipes/ui-ace-data-transform/ui-ace-data-transform.pipe'; // ace 데이터 형태로 변환하는 파이프
 
 /**
  * A component that formats all the data associated with a transaction for
@@ -39,9 +39,11 @@ export class TransactionComponent implements OnInit, OnChanges {
   @Input() data = {};
 
   // data stringified for Angular UI Ace to display
+  // 데이터를 스트링화함 
   payloadJSON = '{}';
 
   // set default UI Ace display to show as plain text (no syntax highlighting)
+  // 에이스모드 : 텍스트, 코드가 아닌 일반 구문이라는 뜻. 
   aceMode = 'text';
 
   /**
