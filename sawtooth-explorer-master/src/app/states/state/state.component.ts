@@ -60,7 +60,7 @@ export class StateComponent implements OnInit {
    */
   updatePayloadData(payloadData: any): void {
 
-    let reg = new RegExp('[\u0000-\u001F]', 'g'); 
+    let reg = new RegExp('[u0000-u001F]', 'g'); 
 
     if (payloadData) {
 
