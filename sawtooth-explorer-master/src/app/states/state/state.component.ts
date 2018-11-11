@@ -69,6 +69,8 @@ export class StateComponent implements OnInit {
       payloadData.value = this.parsePayloadValue(payloadData.value); // 밸류값을 디코딩 뒤 json객체로 변환해서 집어넣음. 
       payloadData.value = JSON.stringify(payloadData, null, 2);
       payloadData.value = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
+      payloadData.value = JSON.parse(payloadData.value); // 밸류값을 디코딩 뒤 json객체로 변환해서 집어넣음. - 파싱
+      
       // console.log(payloadData.value); - 이건 알아보기 힘듦.
       // if valid results are parsed, update payload JSON
       if (payloadData.value) { // 밸류가 있으면, 
