@@ -49,24 +49,29 @@ export class TransactionComponent implements OnInit, OnChanges {
   /**
    * @param uiAceDataTransformPipe {UIAceDataTransformPipe} - used to transform
    * data into a format displayable by Angular UI Ace
+   * Angular UI Ace로 표시 할 수있는 형식의 데이터로 변환하는 데 사용됨.
    */
   constructor(private uiAceDataTransformPipe: UIAceDataTransformPipe) {}
 
   // ngOnInit needed in addition to ngOnChanges because when this view is
+  // ngOnChanges 이외에 ngOnInit이 필요합니다. 왜냐하면이 뷰가
   // dynamically loaded as a component, ngOnInit fires, but ngOnChanges doesn't.
+  // 동적 로드될때 ngOnInit은 발생하지만 ngOnChanges는 그렇지 않기 때문입니다. 
   ngOnInit() {
     // format payload for Angular UI Ace
+    // 앵귤러 UI 에이스의 형식 페이로드
     this.updatePayloadData(this.data['payload']);
   }
 
   ngOnChanges() {
     // format payload for Angular UI Ace
-    this.updatePayloadData(this.data['payload']);
+    this.updatePayloadData(this.data['payload']); // 만약 변화가 일어났다면 - 변형된 데이터를 가져옵니다. 
   }
 
   /**
    * Updates transaction payload so it can be displayed in UI Ace
-   * @param payloadData - data representing the payload within a transaction
+   * 트랜잭션 페이로드를 에이스에 표시할 수 있도록 업데이트합니다. 
+   * @param payloadData - data representing the payload within a transaction : 트랜잭션 내의 페이로드를 나타내는 데이터
    */
   updatePayloadData(payloadData: any): void {
     // format payload for Angular UI Ace
@@ -76,10 +81,10 @@ export class TransactionComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Gets formatting information needed for a transaction payload to be
-   * displayed in string form.
-   * @param payloadData - data representing the payload within a transaction
-   * @returns {object} formatted transaction payload data
+   * Gets formatting information needed for a transaction payload to be, 트랜잭션 페이로드에 필요한 형식 정보를 가져옵니다.
+   * displayed in string form. 문자열 형식으로 표시.
+   * @param payloadData - data representing the payload within a transaction, 트랜잭션 내의 페이로드를 나타내는 데이터
+   * @returns {object} formatted transaction payload data, 오브젝트 형식의 트랜잭션 페이로드 데이터
    */
   getFormatData(payloadData: any): any {
     let formatResult = this.uiAceDataTransformPipe.parseForUIAce(payloadData);
