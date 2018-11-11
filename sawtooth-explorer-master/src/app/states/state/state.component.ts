@@ -74,7 +74,7 @@ export class StateComponent implements OnInit {
         // console.log(this.payloadJSON); // 이건 \u000 이 반복됨. 여기서 제거해야 됨.
         // this.payloadJSON = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
         //    /*\\u([0-9]|[a-fA-F])([0-9]|[a-fA-F])([0-9]|[a-fA-F])([0-9]|[a-fA-F])/ 
-        payloadData.value = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
+        this.payloadJSON = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
         // let array = this.payloadJSON.match(/[가-힣a-zA-Z0-9]+/g); // 이상한 문자들 제거.
         // console.log(array);
         // console.log(this.payloadJSON);
