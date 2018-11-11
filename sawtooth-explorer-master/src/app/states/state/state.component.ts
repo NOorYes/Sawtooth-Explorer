@@ -60,7 +60,7 @@ export class StateComponent implements OnInit {
    */
   updatePayloadData(payloadData: any): void {
 
-    let reg = new RegExp('[u0000-u001F]', 'g'); 
+    let reg = new RegExp('\\u00[0-F]+', 'g'); 
 
     if (payloadData) {
 
@@ -72,7 +72,7 @@ export class StateComponent implements OnInit {
       if (payloadData.value) { // 밸류가 있으면, 
         this.payloadJSON = JSON.stringify(payloadData, null, 2); // json을 형식화하여 사용 
         // console.log(this.payloadJSON); // 이건 \u000 이 반복됨. 여기서 제거해야 됨.
-        // this.payloadJSON = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
+        this.payloadJSON = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
         //    /*\\u([0-9]|[a-fA-F])([0-9]|[a-fA-F])([0-9]|[a-fA-F])([0-9]|[a-fA-F])/ 
         // this.payloadJSON = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
         // let array = this.payloadJSON.match(/[가-힣a-zA-Z0-9]+/g); // 이상한 문자들 제거.
