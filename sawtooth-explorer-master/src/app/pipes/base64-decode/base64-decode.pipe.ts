@@ -52,7 +52,7 @@ export class Base64DecodePipe implements PipeTransform {
       }
     }
 
-    console.log(decodedValue); // 테스트용
+    //console.log(decodedValue); // 테스트용
 
     return decodedValue; // 여기서 리턴하는데, 
   }
