@@ -52,10 +52,10 @@ export class UIAceDataTransformPipe implements PipeTransform {
 
     // attempt to parse the result as JSON
     let payloadData = fromBase64;
+    console.log(payloadData);
     try {
       payloadData = JSON.parse(fromBase64);
 
-      console.log(payloadData);
     } catch(e) {
 
     } finally {
