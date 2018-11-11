@@ -54,7 +54,10 @@ export class UIAceDataTransformPipe implements PipeTransform {
     let payloadData = fromBase64;
     try {
       payloadData = JSON.parse(fromBase64);
+
+      console.log(payloadData);
     } catch(e) {
+
     } finally {
       // if it's already a string, just return that
       if (typeof payloadData === 'string'){
