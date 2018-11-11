@@ -65,9 +65,11 @@ export class StateComponent implements OnInit {
       // if valid results are parsed, update payload JSON
       if (payloadData.value) {
         this.payloadJSON = JSON.stringify(payloadData, null, 2); // json을 string객체로 만들어서 넣음.
-        console.log(this.payloadJSON); // 이건 \u000 이 반복됨. 여기서 제거해야 됨.
-        this.payloadJSON = this.payloadJSON.replace(/\\u0000/g, ""); // 이상한 문자들 제거.
+        // console.log(this.payloadJSON); // 이건 \u000 이 반복됨. 여기서 제거해야 됨.
+        // this.payloadJSON = this.payloadJSON.replace(/\u0000/g, ""); // 이상한 문자들 제거.
         //    /*\\u([0-9]|[a-fA-F])([0-9]|[a-fA-F])([0-9]|[a-fA-F])([0-9]|[a-fA-F])/ 
+        let array = this.payloadJSON.match(/[가-힣]+/g); // 이상한 문자들 제거.
+        console.log(array);
       } else {
         this.payloadJSON = '{}';
       }
