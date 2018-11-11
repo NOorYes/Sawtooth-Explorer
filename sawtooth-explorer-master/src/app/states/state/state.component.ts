@@ -77,7 +77,7 @@ export class StateComponent implements OnInit {
         // this.payloadJSON = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
         // let array = this.payloadJSON.match(/[가-힣a-zA-Z0-9]+/g); // 이상한 문자들 제거.
         // console.log(array);
-        // console.log(this.payloadJSON);
+        console.log(this.payloadJSON);
       } else {
         this.payloadJSON = '{}';
       }
