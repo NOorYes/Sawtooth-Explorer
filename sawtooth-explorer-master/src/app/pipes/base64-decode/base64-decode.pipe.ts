@@ -47,7 +47,7 @@ export class Base64DecodePipe implements PipeTransform {
     if (base64Regex.test(value)) { // 패턴이 있는지를 봄. 즉 base64로 인코딩된 문자인지를 탐지하는 것. 
       try {
         // decodedValue = atob(value); // atob : base64 디코딩 메소드 
-        decodedValue = Base64.decode(value);
+        decodedValue = Base64.atob(value);
       } catch(e) {
       }
     }
