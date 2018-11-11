@@ -66,11 +66,7 @@ export class StateComponent implements OnInit {
 
       console.log(payloadData);
 
-      payloadData.value = this.parsePayloadValue(payloadData.value); // 밸류값을 디코딩 뒤 json객체로 변환해서 집어넣음. 
-      payloadData.value = JSON.stringify(payloadData, null, 2);
-      payloadData.value = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
-      payloadData.value = JSON.parse(payloadData.value); // 밸류값을 디코딩 뒤 json객체로 변환해서 집어넣음. - 파싱
-      
+      payloadData.value = this.parsePayloadValue(payloadData.value); // 밸류값을 디코딩 뒤 json객체로 변환해서 집어넣음.       
       // console.log(payloadData.value); - 이건 알아보기 힘듦.
       // if valid results are parsed, update payload JSON
       if (payloadData.value) { // 밸류가 있으면, 
@@ -78,6 +74,7 @@ export class StateComponent implements OnInit {
         // console.log(this.payloadJSON); // 이건 \u000 이 반복됨. 여기서 제거해야 됨.
         // this.payloadJSON = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
         //    /*\\u([0-9]|[a-fA-F])([0-9]|[a-fA-F])([0-9]|[a-fA-F])([0-9]|[a-fA-F])/ 
+        payloadData.value = this.payloadJSON.replace(reg, ""); // 이상한 문자들 제거.
         // let array = this.payloadJSON.match(/[가-힣a-zA-Z0-9]+/g); // 이상한 문자들 제거.
         // console.log(array);
         // console.log(this.payloadJSON);
