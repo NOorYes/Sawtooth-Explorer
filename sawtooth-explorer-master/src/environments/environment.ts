@@ -21,9 +21,11 @@
  * `ng build --env=prod` then `environment.prod.ts` will be used instead.
  * The list of which env maps to which file can be found in `.angular-cli.json`.
  */
+// 학교의 경우 프록시는 http://210.94.194.82:48090
+// 회사의 경우 http://172.31.21.43:8090
 
 export const environment = {
   production: false,
-  apiURL: 'http://210.94.194.82:48090',
+  apiURL: 'http://172.31.21.43:8090',
   apiTimeout: 3000
 };
