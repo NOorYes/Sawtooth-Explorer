@@ -26,7 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* MATERIAL DESIGN IMPORTS */
 import { MatFormFieldModule, MatSelectModule, MatPaginatorModule, MatTabsModule, MatTableModule,
-  MatInputModule, MatButtonModule, MatIconModule, MatListModule, MatSnackBarModule } from '@angular/material';
+  MatInputModule, MatButtonModule, MatIconModule, MatListModule, MatSnackBarModule, MatExpansionModule } from '@angular/material';
 
 /* ACE EDITOR IMPORTS */
 import { AceEditorDirective } from 'ng2-ace';
@@ -113,6 +113,7 @@ import { UIAceDataTransformPipe } from './pipes/ui-ace-data-transform/ui-ace-dat
     MatIconModule,
     MatListModule,
     MatSnackBarModule,
+    MatExpansionModule
   ],
   providers: [
     APIService
