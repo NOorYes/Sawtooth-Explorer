@@ -74,7 +74,10 @@ export class TransactionComponent implements OnInit, OnChanges {
    */
   updatePayloadData(payloadData: any): void {
     // format payload for Angular UI Ace
+    let testdata; // 테스트용
     let formatRes = this.getFormatData(payloadData);
+    testdata = JSON.stringify(payloadData, null, 2); // 테스트용
+    console.log(testdata); // 테스트용
     this.payloadJSON = formatRes.data;
     this.aceMode = formatRes.aceDisplayMode;
   }
@@ -89,4 +92,8 @@ export class TransactionComponent implements OnInit, OnChanges {
     let formatResult = this.uiAceDataTransformPipe.parseForUIAce(payloadData);
     return formatResult;
   }
+}
+
+export class ExpansionOverviewExample {
+  panelOpenState: boolean = false;
 }
