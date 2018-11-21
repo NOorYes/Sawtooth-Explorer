@@ -76,7 +76,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     // format payload for Angular UI Ace
     let testdata; // 테스트용
     let formatRes = this.getFormatData(payloadData);
-    testdata = JSON.stringify(payloadData, null, 2); // 테스트용
+    testdata = JSON.stringify(formatRes, null, 2); // 테스트용
     console.log(testdata); // 테스트용
     this.payloadJSON = formatRes.data;
     this.aceMode = formatRes.aceDisplayMode;
