@@ -52,7 +52,6 @@ export class UIAceDataTransformPipe implements PipeTransform {
 
     // attempt to parse the result as JSON
     let payloadData = fromBase64;
-    console.log(payloadData);
     try {
       payloadData = JSON.parse(fromBase64);
 
@@ -66,6 +65,7 @@ export class UIAceDataTransformPipe implements PipeTransform {
         // whatever else it is, turn it into a string
         result.data = JSON.stringify(payloadData, null, 2);
         // change UI Ace's display mode to JSON for syntax highlighting
+        console.log(result.data);
         result.aceDisplayMode = 'json';
       }
     }
