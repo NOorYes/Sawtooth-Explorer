@@ -15,7 +15,7 @@
  * ------------------------------------------------------------------------------
  */
 
-import { Component, Input, OnInit, OnChanges, Injectable } from '@angular/core';
+import { Component, Input, OnInit, OnChanges} from '@angular/core';
 import { Base64DecodePipe } from '../../pipes/base64-decode/base64-decode.pipe'; // 디코더 파이프 
 import { UIAceDataTransformPipe } from
   '../../pipes/ui-ace-data-transform/ui-ace-data-transform.pipe'; // ace 데이터 형태로 변환하는 파이프
