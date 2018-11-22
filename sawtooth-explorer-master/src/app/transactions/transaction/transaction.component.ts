@@ -41,6 +41,7 @@ export class TransactionComponent implements OnInit, OnChanges {
   // 데이터를 스트링화함 
   payloadJSON = '{}';
   testdata; // 테스트용, 이걸로 파싱할 예정. 
+  parsearray; // 파싱한 값을 담은 어레이.
 
   // set default UI Ace display to show as plain text (no syntax highlighting)
   // 에이스모드 : 텍스트, 코드가 아닌 일반 구문이라는 뜻. 
@@ -83,11 +84,20 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.aceMode = formatRes.aceDisplayMode;
   }
 
-  parsePayloadData(): void{
+  parsePayloadData(): void {
     let array = this.testdata.split('\\n');
-    console.log(array[0]); // 테스트용
-    console.log(array[1]); // 테스트용
-    console.log(array[2]); // 테스트용
+    console.log(array[0]); // 테스트용 - 발급번호를 추출해야됨. 발급사유도 있는데 그건 스킵.
+    console.log(array[1]); // 테스트용 - 
+    console.log(array[2]); // 테스트용 - 작성날짜 / 작성시스템 / 해쉬 추출
+  
+    /**
+    * @returns {parsearray} : 값을 순서대로 담아서 리턴하는 배열
+    * 0번 : 발급번호 / 첫 번째 어레이 / ([A-Z])\w+[-]\d
+    * 1번 : 
+    */
+
+    this.parsearray[0] = array[0].match(/[A-Z])\w+[-]\d/g);
+
   }
 
   /**
