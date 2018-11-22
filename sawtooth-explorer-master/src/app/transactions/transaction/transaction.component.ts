@@ -96,7 +96,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     * 1번 : 
     */
 
-    this.parsearray[0] = array[0].match(/[A-Z])\w+[-]\d/g);
+    this.parsearray[0] = array[0].match(/([A-Z])\w+[-]\d/g);
 
   }
 
