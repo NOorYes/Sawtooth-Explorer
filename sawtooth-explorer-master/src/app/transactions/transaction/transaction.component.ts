@@ -103,7 +103,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray[1] = array[1].match(/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]):/g); // 발급일시
     this.parsearray[1] =  this.parsearray[1].slice(0,-1);
     this.parsearray[2] = array[1].match(/[A-Z]{2}-[0-9]{3}-[0-9]{2}-[A-Z]{2}/g); // 공급회사 코드
-    this.parsearray[3] = array[1].match(/[가-힣]+J/g)); // 공급회사명
+    this.parsearray[3] = array[1].match(/[가-힣]+J/g); // 공급회사명
     this.parsearray[3] =  this.parsearray[3].slice(0,-1); 
     this.parsearray[4] = array[1].match(/\d{3}-\d{2}-\d{5}/g); // 사업자 등록번호
     this.parsearray[5] = array[1].match(/[가-힣]+Z/g); // 대표자명
