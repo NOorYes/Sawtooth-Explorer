@@ -102,6 +102,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray[0] = array[0].match(/([A-Z])\w+[-]\d/g); // 발급번호
     this.parsearray[1] = array[1].match(/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]):/g); // 발급일시
     this.parsearray[1] =  this.parsearray[1].slice(0,-1);
+    console.log(this.parsearray[1]);
     this.parsearray[2] = array[1].match(/[A-Z]{2}-[0-9]{3}-[0-9]{2}-[A-Z]{2}/g); // 공급회사 코드
     this.parsearray[3] = array[1].match(/[가-힣]+J/g); // 공급회사명
     this.parsearray[3] =  this.parsearray[3].slice(0,-1); 
