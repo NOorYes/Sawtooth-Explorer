@@ -100,21 +100,29 @@ export class TransactionComponent implements OnInit, OnChanges {
     */
 
     this.parsearray[0] = array[0].match(/([A-Z])\w+[-]\d/g); // 발급번호
-    this.parsearray[1] = (array[1].match(/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]):/g)).slice(0,-1); // 발급일시
+    this.parsearray[1] = array[1].match(/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]):/g); // 발급일시
+    this.parsearray[1] =  this.parsearray[1].slice(0,-1);
     this.parsearray[2] = array[1].match(/[A-Z]{2}-[0-9]{3}-[0-9]{2}-[A-Z]{2}/g); // 공급회사 코드
-    this.parsearray[3] = (array[1].match(/[가-힣]+J/g)).slice(0,-1); // 공급회사명 
+    this.parsearray[3] = array[1].match(/[가-힣]+J/g)); // 공급회사명
+    this.parsearray[3] =  this.parsearray[3].slice(0,-1); 
     this.parsearray[4] = array[1].match(/\d{3}-\d{2}-\d{5}/g); // 사업자 등록번호
-    this.parsearray[5] = (array[1].match(/[가-힣]+Z/g)).slice(0,-1); // 대표자명
+    this.parsearray[5] = array[1].match(/[가-힣]+Z/g); // 대표자명
+    this.parsearray[5] =  this.parsearray[5].slice(0,-1);
     this.parsearray[6] = array[1].match(/\d{3}-\d{3,4}-\d{4}/g); // 공급회사 전화번호
-    this.parsearray[7] = (array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)Â/g)).slice(0,-1); // 공급회사 주소
-
+    this.parsearray[7] = array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)Â/g); // 공급회사 주소
+    this.parsearray[7] =  this.parsearray[7].slice(0,-1);
     
-    this.parsearray[8] = (array[1].match(/[가-힣]+Ê/g)).slice(0,-1); // 작성자 이름
-    this.parsearray[9] = (array[1].match(/[가-힣]+Ò/g)).slice(0,-1); // 작성자 직위
-    this.parsearray[10] = (array[1].match(/[가-힣]+Ú /g)).slice(0,-1); // 작성자 회사명
-    this.parsearray[11] = (array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)â/g)).slice(0,-1); // 작성자 회사의 주소
+    this.parsearray[8] = array[1].match(/[가-힣]+Ê/g); // 작성자 이름
+    this.parsearray[9] = array[1].match(/[가-힣]+Ò/g); // 작성자 직위
+    this.parsearray[10] = array[1].match(/[가-힣]+Ú /g); // 작성자 회사명
+    this.parsearray[8] =  this.parsearray[8].slice(0,-1);
+    this.parsearray[9] =  this.parsearray[9].slice(0,-1);
+    this.parsearray[10] =  this.parsearray[10].slice(0,-1);
+    this.parsearray[11] = array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)â/g); // 작성자 회사의 주소
+    this.parsearray[11] =  this.parsearray[11].slice(0,-1);
 
     this.parsearray[12] = (array[2].match(/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])ú/g)).slice(0,-1); // 작성날짜 
+    this.parsearray[12] =  this.parsearray[12].slice(0,-1);
     this.parsearray[13] = array[2].match(/kFop/g); // 작성시스템
     this.parsearray[14] = array[2].match(/[A-Fa-f0-9]{32}/g); // 해쉬 
 
