@@ -84,7 +84,7 @@ export class TransactionComponent implements OnInit, OnChanges {
   }
 
   parsePayloadData(): void{
-    let array = this.testdata.split('\n');
+    let array = this.testdata.split('\\n');
     console.log(array[0]); // 테스트용
     console.log(array[1]); // 테스트용
     console.log(array[2]); // 테스트용
