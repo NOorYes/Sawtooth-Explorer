@@ -40,6 +40,7 @@ export class TransactionComponent implements OnInit, OnChanges {
   // data stringified for Angular UI Ace to display
   // 데이터를 스트링화함 
   payloadJSON = '{}';
+  testdata = ''; // 테스트용, 이걸로 파싱할 예정. 
 
   // set default UI Ace display to show as plain text (no syntax highlighting)
   // 에이스모드 : 텍스트, 코드가 아닌 일반 구문이라는 뜻. 
@@ -60,11 +61,13 @@ export class TransactionComponent implements OnInit, OnChanges {
     // format payload for Angular UI Ace
     // 앵귤러 UI 에이스의 형식 페이로드
     this.updatePayloadData(this.data['payload']);
+    this.parsePayloadData();
   }
 
   ngOnChanges() {
     // format payload for Angular UI Ace
     this.updatePayloadData(this.data['payload']); // 만약 변화가 일어났다면 - 변형된 데이터를 가져옵니다. 
+    this.parsePayloadData();
   }
 
   /**
@@ -74,12 +77,17 @@ export class TransactionComponent implements OnInit, OnChanges {
    */
   updatePayloadData(payloadData: any): void {
     // format payload for Angular UI Ace
-    let testdata; // 테스트용
     let formatRes = this.getFormatData(payloadData);
-    testdata = JSON.stringify(formatRes, null, 2); // 테스트용
-    console.log(testdata); // 테스트용
+    this.testdata = JSON.stringify(formatRes.data, null, 2); // 테스트용, 이 값은 \n이 존재함.
     this.payloadJSON = formatRes.data;
     this.aceMode = formatRes.aceDisplayMode;
+  }
+
+  parsePayloadData(): void{
+    let array = this.testdata.split('\n');
+    console.log(array[0]); // 테스트용
+    console.log(array[1]); // 테스트용
+    console.log(array[2]); // 테스트용
   }
 
   /**
