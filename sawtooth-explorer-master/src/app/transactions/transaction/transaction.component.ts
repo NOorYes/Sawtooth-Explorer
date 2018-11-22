@@ -40,7 +40,7 @@ export class TransactionComponent implements OnInit, OnChanges {
   // data stringified for Angular UI Ace to display
   // 데이터를 스트링화함 
   payloadJSON = '{}';
-  testdata = ''; // 테스트용, 이걸로 파싱할 예정. 
+  testdata; // 테스트용, 이걸로 파싱할 예정. 
 
   // set default UI Ace display to show as plain text (no syntax highlighting)
   // 에이스모드 : 텍스트, 코드가 아닌 일반 구문이라는 뜻. 
