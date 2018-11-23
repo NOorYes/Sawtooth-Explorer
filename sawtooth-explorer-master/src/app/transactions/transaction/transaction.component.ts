@@ -43,6 +43,7 @@ export class TransactionComponent implements OnInit, OnChanges {
   payloadJSON = '{}';
   testdata; // 테스트용, 이걸로 파싱할 예정. 
   parsearray : string[] = []; // 파싱한 값을 담은 어레이.
+  flag; // 확인서인지 인증서인지 
   //ELEMENT_DATA: Element[];
 
   //displayedColumns = ['position', 'name'];
@@ -99,6 +100,11 @@ export class TransactionComponent implements OnInit, OnChanges {
 
   parsePayloadData(): void {
     let array = this.testdata.split('\\n');
+
+    // 여기서 미리 찾아봄. 0번째 어레이에 발급번호가 있는지 없는지.
+    if(array[0].test(/([A-Z])\w+[-]\d/g)) {
+    // 있다 - 확인서이므로 그대로 진행 
+    this.flag = false;
     console.log(array[0]); // 테스트용 - 발급번호를 추출해야됨. 발급사유도 있는데 그건 스킵.
     console.log(array[1]); // 테스트용 추출값 - 발급일시 / 공급회사 코드 / 공급회사명 / 사업자등록번호
     // 대표자명 / 공급회사 전화번호 / 공급회사 주소 / 작성자 이름 / 작성자 직위 / 작성자 회사명 / 회사의 주소
@@ -140,6 +146,15 @@ export class TransactionComponent implements OnInit, OnChanges {
     //this.parsearray[12] =  this.parsearray[12].slice(0,-1);
     this.parsearray[14] = array[2].match(/kFop/g); // 작성시스템
     this.parsearray[15] = array[2].match(/[A-Fa-f0-9]{32}/g); // 해쉬 
+    }
+    else
+      // 없다 - 인증서임. 어레이는 0과 1 두개뿐일 것. 유의미한 정보를 담고 있는건 1 하나뿐.
+      this.flag = true;
+      // 추출값 - 공급회사 코드 / 이메일 / 공개키
+      this.parsearray = []; // 배열 초기화 
+      this.parsearray[0] = array[1].match(/[A-Z]{2}-[0-9]{3}-[0-9]{2}-[A-Z]{2}/g); // 공급회사 코드
+      this.parsearray[1] = array[1].match(/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}/g); // 작성자 이메일
+      this.parsearray[2] = array[1].match(/[A-Fa-f0-9]{32}\d+/g); // 공개키
   }
 /*
   insertTable(ELEMENT_DATA: Element[]): void {
