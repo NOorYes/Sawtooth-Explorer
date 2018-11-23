@@ -100,9 +100,10 @@ export class TransactionComponent implements OnInit, OnChanges {
 
   parsePayloadData(): void {
     let array = this.testdata.split('\\n');
-
+    let regx = /([A-Z])\w+[-]\d/g;
     // 여기서 미리 찾아봄. 0번째 어레이에 발급번호가 있는지 없는지.
-    if(array[0].test(/([A-Z])\w+[-]\d/g)) {
+
+    if(regx.test(array[0])) {
     // 있다 - 확인서이므로 그대로 진행 
     this.flag = false; // true 인 경우 인증서, 아닌 경우 확인서 
     console.log(array[0]); // 테스트용 - 발급번호를 추출해야됨. 발급사유도 있는데 그건 스킵.
