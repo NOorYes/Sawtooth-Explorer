@@ -16,6 +16,7 @@
  */
 
 import { Component, Input, OnInit, OnChanges} from '@angular/core';
+import {MatTableDataSource} from '@angular/material'; // 테이블
 import { Base64DecodePipe } from '../../pipes/base64-decode/base64-decode.pipe'; // 디코더 파이프 
 import { UIAceDataTransformPipe } from
   '../../pipes/ui-ace-data-transform/ui-ace-data-transform.pipe'; // ace 데이터 형태로 변환하는 파이프
@@ -42,6 +43,15 @@ export class TransactionComponent implements OnInit, OnChanges {
   payloadJSON = '{}';
   testdata; // 테스트용, 이걸로 파싱할 예정. 
   parsearray : string[] = []; // 파싱한 값을 담은 어레이.
+
+  displayedColumns = ['position', 'name'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 
   // set default UI Ace display to show as plain text (no syntax highlighting)
   // 에이스모드 : 텍스트, 코드가 아닌 일반 구문이라는 뜻. 
@@ -122,7 +132,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray[11] = array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)â/g); // 작성자 회사의 주소
     //this.parsearray[11] =  this.parsearray[11].slice(0,-1);
 
-    this.parsearray[12] = (array[2].match(/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])ú/g)).slice(0,-1); // 작성날짜 
+    this.parsearray[12] = array[2].match(/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])ú/g); // 작성날짜 
     //this.parsearray[12] =  this.parsearray[12].slice(0,-1);
     this.parsearray[13] = array[2].match(/kFop/g); // 작성시스템
     this.parsearray[14] = array[2].match(/[A-Fa-f0-9]{32}/g); // 해쉬 
@@ -144,3 +154,17 @@ export class TransactionComponent implements OnInit, OnChanges {
 export class ExpansionOverviewExample {
   panelOpenState: boolean = false;
 }
+
+export interface Element {
+  name: string;
+  position: string;
+}
+
+const ELEMENT_DATA: Element[] = [
+  {position: 'noew', name: 'Hydrogen'},
+  {position: 'noew', name: 'Helium'},
+  {position: 'noew', name: 'Lithium'},
+  {position: 'noew', name: 'Beryllium'},
+  {position: 'noew', name: 'Boron'},
+  {position: 'noew', name: 'Carbon'}
+];
