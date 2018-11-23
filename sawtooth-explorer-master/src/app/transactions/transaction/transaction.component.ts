@@ -155,6 +155,8 @@ export class TransactionComponent implements OnInit, OnChanges {
     else{
       // 없다 - 인증서임. 어레이는 0과 1 두개뿐일 것. 유의미한 정보를 담고 있는건 1 하나뿐.
       this.flag = true;
+      console.log(array[0]); // 쓸데없는 정보
+      console.log(array[1]); // 유효정보. 
       // 추출값 - 공급회사 코드 / 이메일 / 공개키
       this.parsearray = []; // 배열 초기화 
       this.parsearray[0] = array[1].match(/\d{3}-\d{2}-\d{5}/g); // 공급회사 코드
