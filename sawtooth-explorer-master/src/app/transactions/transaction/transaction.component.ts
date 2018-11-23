@@ -99,6 +99,7 @@ export class TransactionComponent implements OnInit, OnChanges {
   }
 
   parsePayloadData(): void {
+    this.parsearray = []; // 배열 초기화
     let array = this.testdata.split('\\n');
     let regx = /([A-Z])\w+[-]\d/g;
     // 여기서 미리 찾아봄. 0번째 어레이에 발급번호가 있는지 없는지.
@@ -148,7 +149,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray[14] = array[2].match(/kFop/g); // 작성시스템
     this.parsearray[15] = array[2].match(/[A-Fa-f0-9]{32}/g); // 해쉬 
     }
-    else
+    else{
       // 없다 - 인증서임. 어레이는 0과 1 두개뿐일 것. 유의미한 정보를 담고 있는건 1 하나뿐.
       this.flag = true;
       // 추출값 - 공급회사 코드 / 이메일 / 공개키
@@ -156,6 +157,7 @@ export class TransactionComponent implements OnInit, OnChanges {
       this.parsearray[0] = array[1].match(/\d{3}-\d{2}-\d{5}/g); // 공급회사 코드
       this.parsearray[1] = array[1].match(/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}/g); // 작성자 이메일
       this.parsearray[2] = array[1].match(/[A-Fa-f0-9]{32}\d+/g); // 공개키
+    }
   }
 /*
   insertTable(ELEMENT_DATA: Element[]): void {
