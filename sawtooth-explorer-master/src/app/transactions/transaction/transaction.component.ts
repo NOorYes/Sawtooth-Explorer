@@ -134,11 +134,12 @@ export class TransactionComponent implements OnInit, OnChanges {
     //this.parsearray[10] =  this.parsearray[10].slice(0,-1);
     this.parsearray[11] = array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)â/g); // 작성자 회사의 주소
     //this.parsearray[11] =  this.parsearray[11].slice(0,-1);
+    this.parsearray[12] = array[1].match(/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}/g); // 작성자 이메일
 
-    this.parsearray[12] = array[2].match(/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])ú/g); // 작성날짜 
+    this.parsearray[13] = array[2].match(/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])ú/g); // 작성날짜 
     //this.parsearray[12] =  this.parsearray[12].slice(0,-1);
-    this.parsearray[13] = array[2].match(/kFop/g); // 작성시스템
-    this.parsearray[14] = array[2].match(/[A-Fa-f0-9]{32}/g); // 해쉬 
+    this.parsearray[14] = array[2].match(/kFop/g); // 작성시스템
+    this.parsearray[15] = array[2].match(/[A-Fa-f0-9]{32}/g); // 해쉬 
   }
 /*
   insertTable(ELEMENT_DATA: Element[]): void {
