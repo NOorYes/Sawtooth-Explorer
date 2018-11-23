@@ -144,18 +144,7 @@ export class TransactionComponent implements OnInit, OnChanges {
 
   insertTable(ELEMENT_DATA: Element[]): void {
     ELEMENT_DATA =[
-    {position: '발급번호', name: this.parsearray[0]},
-    {position: '발급일시', name: this.parsearray[1]},
-    {position: '공급회사 코드', name: this.parsearray[2]},
-    {position: '공급회사명', name: this.parsearray[3]},
-    {position: '사업자 등록번호', name: this.parsearray[4]},
-    {position: '대표자명', name: this.parsearray[5]},
-    {position: '공급회사 전화번호', name: this.parsearray[6]},
-    {position: '공급회사 주소', name: this.parsearray[7]},
-    {position: '작성자 이름', name: this.parsearray[8]},
-    {position: '작성자 직위', name: this.parsearray[9]},
-    {position: '작성자 회사명', name: this.parsearray[10]},
-    {position: '작성자 회사 주소', name: this.parsearray[11]}
+    {position: '발급번호', name: this.parsearray[0]}
     ]
   }
   
@@ -177,7 +166,7 @@ export class ExpansionOverviewExample {
 }
 
 export interface Element {
-  name: string[];
+  name: string;
   position: string;
 }
 
