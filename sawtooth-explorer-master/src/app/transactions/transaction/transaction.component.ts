@@ -128,7 +128,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     
     this.parsearray[8] = array[1].match(/[가-힣]+Ê/g); // 작성자 이름
     this.parsearray[9] = array[1].match(/[가-힣]+Ò/g); // 작성자 직위
-    this.parsearray[10] = array[1].match(/[가-힣]+Ú /g); // 작성자 회사명
+    this.parsearray[10] = array[1].match(/[가-힣]+Ú/g); // 작성자 회사명
     //this.parsearray[8] =  this.parsearray[8].slice(0,-1);
     //this.parsearray[9] =  this.parsearray[9].slice(0,-1);
     //this.parsearray[10] =  this.parsearray[10].slice(0,-1);
