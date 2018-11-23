@@ -43,7 +43,7 @@ export class TransactionComponent implements OnInit, OnChanges {
   payloadJSON = '{}';
   testdata; // 테스트용, 이걸로 파싱할 예정. 
   parsearray : string[] = []; // 파싱한 값을 담은 어레이.
-  flag; // 확인서인지 인증서인지 
+  flag = false; // 확인서인지 인증서인지 
   //ELEMENT_DATA: Element[];
 
   //displayedColumns = ['position', 'name'];
