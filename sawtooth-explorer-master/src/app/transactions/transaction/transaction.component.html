@@ -76,7 +76,52 @@
 <hr/>
 
 <h3 class="h3">Parsing</h3>
+{
+  if(flag) {
 
+  <mat-accordion>
+           <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        작성 날짜
+      </mat-panel-title>
+      <mat-panel-description>
+      원산지 확인서를 작성한 날짜
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{parsearray[13]}}</p>
+  </mat-expansion-panel>
+
+             <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        작성 요청 시스템명
+      </mat-panel-title>
+      <mat-panel-description>
+      원산지 확인서를 작성 요청한 시스템
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p> {{parsearray[14]}} </p>
+  </mat-expansion-panel>
+
+             <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        해쉬값
+      </mat-panel-title>
+      <mat-panel-description>
+      원산지 확인서의 해쉬값 
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{parsearray[15]}}</p>
+  </mat-expansion-panel>
+
+</mat-accordion>
+  }
+else {
 <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
@@ -293,6 +338,8 @@
   </mat-expansion-panel>
 
 </mat-accordion>
+ }
+}
 
 <hr/>
 
