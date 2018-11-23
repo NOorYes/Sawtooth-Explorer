@@ -43,17 +43,17 @@ export class TransactionComponent implements OnInit, OnChanges {
   payloadJSON = '{}';
   testdata; // 테스트용, 이걸로 파싱할 예정. 
   parsearray : string[] = []; // 파싱한 값을 담은 어레이.
-  ELEMENT_DATA: Element[];
+  //ELEMENT_DATA: Element[];
 
-  displayedColumns = ['position', 'name'];
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-
+  //displayedColumns = ['position', 'name'];
+  //dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+/*
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-
+*/
   // set default UI Ace display to show as plain text (no syntax highlighting)
   // 에이스모드 : 텍스트, 코드가 아닌 일반 구문이라는 뜻. 
   aceMode = 'text';
@@ -74,14 +74,14 @@ export class TransactionComponent implements OnInit, OnChanges {
     // 앵귤러 UI 에이스의 형식 페이로드
     this.updatePayloadData(this.data['payload']);
     this.parsePayloadData();
-    this.insertTable(this.ELEMENT_DATA); // 테이블에 값 넣는용
+    //this.insertTable(this.ELEMENT_DATA); // 테이블에 값 넣는용
   }
 
   ngOnChanges() {
     // format payload for Angular UI Ace
     this.updatePayloadData(this.data['payload']); // 만약 변화가 일어났다면 - 변형된 데이터를 가져옵니다. 
     this.parsePayloadData();
-    this.insertTable(this.ELEMENT_DATA); // 테이블에 값 넣는용
+    //this.insertTable(this.ELEMENT_DATA); // 테이블에 값 넣는용
   }
 
   /**
@@ -141,7 +141,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray[14] = array[2].match(/[A-Fa-f0-9]{32}/g); // 해쉬 
 
   }
-
+/*
   insertTable(ELEMENT_DATA: Element[]): void {
     ELEMENT_DATA =[
     {position: '발급번호', name: this.parsearray[0]}
@@ -150,6 +150,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     console.log(ELEMENT_DATA);
 
   }
+  */
   
 
   /**
@@ -168,11 +169,12 @@ export class ExpansionOverviewExample {
   panelOpenState: boolean = false;
 }
 
+/*
 export interface Element {
   name: string;
   position: string;
 }
-
+*/
 /*
 const ELEMENT_DATA: Element[] = [
   {position: '발급번호', name: this.parsearray[0]},
