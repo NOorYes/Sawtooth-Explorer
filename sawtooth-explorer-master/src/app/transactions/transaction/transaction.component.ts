@@ -126,10 +126,11 @@ export class TransactionComponent implements OnInit, OnChanges {
     console.log(this.parsearray[1]);
     this.parsearray[2] = array[1].match(/[A-Z]{2}-[0-9]{3}-[0-9]{2}-[A-Z]{2}/g); // 공급회사 코드
     this.parsearray[3] = array[1].match(/[가-힣]+J/g); // 공급회사명
+    console.log(this.parsearray[3].toString());
     this.parsearray[3] =  this.parsearray[3].toString().substring(0, this.parsearray[3].length-1); 
+    console.log(this.parsearray[3]);
     this.parsearray[4] = array[1].match(/\d{3}-\d{2}-\d{5}/g); // 사업자 등록번호
     this.parsearray[5] = array[1].match(/[가-힣]+Z/g); // 대표자명
-    console.log(this.parsearray[5]);
     //this.parsearray[5] =  this.parsearray[5].slice(0,-1);
     this.parsearray[6] = array[1].match(/\d{3}-\d{3,4}-\d{4}/g); // 공급회사 전화번호
     this.parsearray[7] = array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)Â/g); // 공급회사 주소
