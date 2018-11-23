@@ -44,7 +44,7 @@ export class TransactionComponent implements OnInit, OnChanges {
   testdata; // 테스트용, 이걸로 파싱할 예정. 
   parsearray : string[] = []; // 파싱한 값을 담은 어레이.
   ELEMENT_DATA: Element[];
-  
+
   displayedColumns = ['position', 'name'];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
@@ -177,7 +177,7 @@ export class ExpansionOverviewExample {
 }
 
 export interface Element {
-  name: string;
+  name: string[];
   position: string;
 }
 
