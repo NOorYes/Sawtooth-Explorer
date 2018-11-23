@@ -75,10 +75,7 @@
 
 <hr/>
 
-<h3 class="h3">Parsing</h3>
-{
-  if(flag) {
-
+<div *ngIf = "flag == true">
   <mat-accordion>
            <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
@@ -120,8 +117,9 @@
   </mat-expansion-panel>
 
 </mat-accordion>
-  }
-else {
+  </div>
+
+  <div *ngIf = "flag == false">
 <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
@@ -338,8 +336,7 @@ else {
   </mat-expansion-panel>
 
 </mat-accordion>
- }
-}
+</div>
 
 <hr/>
 

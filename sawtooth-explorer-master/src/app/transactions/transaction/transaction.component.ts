@@ -104,7 +104,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     // 여기서 미리 찾아봄. 0번째 어레이에 발급번호가 있는지 없는지.
     if(array[0].test(/([A-Z])\w+[-]\d/g)) {
     // 있다 - 확인서이므로 그대로 진행 
-    this.flag = false;
+    this.flag = false; // true 인 경우 인증서, 아닌 경우 확인서 
     console.log(array[0]); // 테스트용 - 발급번호를 추출해야됨. 발급사유도 있는데 그건 스킵.
     console.log(array[1]); // 테스트용 추출값 - 발급일시 / 공급회사 코드 / 공급회사명 / 사업자등록번호
     // 대표자명 / 공급회사 전화번호 / 공급회사 주소 / 작성자 이름 / 작성자 직위 / 작성자 회사명 / 회사의 주소
