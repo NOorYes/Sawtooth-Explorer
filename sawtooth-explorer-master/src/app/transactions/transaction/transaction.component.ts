@@ -139,7 +139,6 @@ export class TransactionComponent implements OnInit, OnChanges {
     //this.parsearray[12] =  this.parsearray[12].slice(0,-1);
     this.parsearray[13] = array[2].match(/kFop/g); // 작성시스템
     this.parsearray[14] = array[2].match(/[A-Fa-f0-9]{32}/g); // 해쉬 
-
   }
 /*
   insertTable(ELEMENT_DATA: Element[]): void {
