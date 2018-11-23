@@ -134,7 +134,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray[5] =  this.parsearray[5].toString().slice(0, -1);
     this.parsearray[6] = array[1].match(/\d{3}-\d{3,4}-\d{4}/g); // 공급회사 전화번호
     this.parsearray[7] = array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)Â/g); // 공급회사 주소
-    this.parsearray[7] =  this.parsearray[7].toString().slice(0, -1); 
+    //this.parsearray[7] =  this.parsearray[7].toString().slice(0, -1); // 값이 없어서 오류남
     
     this.parsearray[8] = array[1].match(/[가-힣]+Ê/g); // 작성자 이름
     this.parsearray[9] = array[1].match(/[가-힣]+Ò/g); // 작성자 직위
@@ -143,7 +143,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray[9] =  this.parsearray[9].toString().slice(0, -1); 
     this.parsearray[10] = this.parsearray[10].toString().slice(0, -1); 
     this.parsearray[11] = array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)â/g); // 작성자 회사의 주소
-    this.parsearray[11] = this.parsearray[11].toString().slice(0, -1); 
+    //this.parsearray[11] = this.parsearray[11].toString().slice(0, -1); // 값이 없어서 오류남
     this.parsearray[12] = array[1].match(/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}/g); // 작성자 이메일
 
     this.parsearray[13] = array[2].match(/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])ú/g); // 작성날짜 
