@@ -46,6 +46,7 @@ export class TransactionComponent implements OnInit, OnChanges {
 
   displayedColumns = ['position', 'name'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+  ELEMENT_DATA: Element[];
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -73,12 +74,14 @@ export class TransactionComponent implements OnInit, OnChanges {
     // 앵귤러 UI 에이스의 형식 페이로드
     this.updatePayloadData(this.data['payload']);
     this.parsePayloadData();
+    this.insertTable(this.ELEMENT_DATA); // 테이블에 값 넣는용
   }
 
   ngOnChanges() {
     // format payload for Angular UI Ace
     this.updatePayloadData(this.data['payload']); // 만약 변화가 일어났다면 - 변형된 데이터를 가져옵니다. 
     this.parsePayloadData();
+    this.insertTable(this.ELEMENT_DATA); // 테이블에 값 넣는용
   }
 
   /**
@@ -139,6 +142,24 @@ export class TransactionComponent implements OnInit, OnChanges {
 
   }
 
+  insertTable(ELEMENT_DATA: Element[]): void {
+    ELEMENT_DATA =[
+    {position: '발급번호', name: this.parsearray[0]},
+    {position: '발급일시', name: this.parsearray[1]},
+    {position: '공급회사 코드', name: this.parsearray[2]},
+    {position: '공급회사명', name: this.parsearray[3]},
+    {position: '사업자 등록번호', name: this.parsearray[4]},
+    {position: '대표자명', name: this.parsearray[5]},
+    {position: '공급회사 전화번호', name: this.parsearray[6]},
+    {position: '공급회사 주소', name: this.parsearray[7]},
+    {position: '작성자 이름', name: this.parsearray[8]},
+    {position: '작성자 직위', name: this.parsearray[9]},
+    {position: '작성자 회사명', name: this.parsearray[10]},
+    {position: '작성자 회사 주소', name: this.parsearray[11]}
+    ]
+  }
+  
+
   /**
    * Gets formatting information needed for a transaction payload to be, 트랜잭션 페이로드에 필요한 형식 정보를 가져옵니다.
    * displayed in string form. 문자열 형식으로 표시.
@@ -160,6 +181,7 @@ export interface Element {
   position: string;
 }
 
+/*
 const ELEMENT_DATA: Element[] = [
   {position: '발급번호', name: this.parsearray[0]},
   {position: '발급일시', name: this.parsearray[1]},
@@ -174,3 +196,4 @@ const ELEMENT_DATA: Element[] = [
   {position: '작성자 회사명', name: this.parsearray[10]},
   {position: '작성자 회사 주소', name: this.parsearray[11]}
 ];
+*/
