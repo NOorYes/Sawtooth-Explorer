@@ -146,6 +146,9 @@ export class TransactionComponent implements OnInit, OnChanges {
     ELEMENT_DATA =[
     {position: '발급번호', name: this.parsearray[0]}
     ]
+    
+    console.log(ELEMENT_DATA);
+
   }
   
 
