@@ -159,7 +159,9 @@ export class TransactionComponent implements OnInit, OnChanges {
       this.parsearray = []; // 배열 초기화 
       this.parsearray[0] = array[1].match(/\d{3}-\d{2}-\d{5}/g); // 공급회사 코드
       this.parsearray[1] = array[1].match(/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}/g); // 작성자 이메일
-      this.parsearray[2] = array[1].match(/[A-Fa-f0-9]{32}\d+/g); // 공개키
+      this.parsearray[1] = this.parsearray[1].toString().replace("u0011", "");
+      this.parsearray[2] = array[1].match(/u001a[A-Fa-f0-9]+\d/g); // 공개키
+      this.parsearray[2] = this.parsearray[2].toString().replace("u001a", "");
     }
   }
 /*
