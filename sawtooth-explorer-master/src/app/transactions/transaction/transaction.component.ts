@@ -43,10 +43,10 @@ export class TransactionComponent implements OnInit, OnChanges {
   payloadJSON = '{}';
   testdata; // 테스트용, 이걸로 파싱할 예정. 
   parsearray : string[] = []; // 파싱한 값을 담은 어레이.
-
-  displayedColumns = ['position', 'name'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
   ELEMENT_DATA: Element[];
+  
+  displayedColumns = ['position', 'name'];
+  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
