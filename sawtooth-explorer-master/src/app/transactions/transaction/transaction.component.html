@@ -214,6 +214,19 @@
     <p>{{parsearray[6]}}</p>
   </mat-expansion-panel>
 
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        팩스번호
+      </mat-panel-title>
+      <mat-panel-description>
+      원산지 확인 요청을 받은 회사의 팩스번호
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{parsearray[7]}}</p>
+  </mat-expansion-panel>
+
           <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
@@ -224,7 +237,33 @@
       원산지 확인 요청을 받은 회사의 주소
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{parsearray[7]}}</p>
+    <p>{{parsearray[8]}}</p>
+  </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        이메일
+      </mat-panel-title>
+      <mat-panel-description>
+      원산지 확인 요청을 받은 회사의 이메일
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{parsearray[9]}}</p>
+  </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        공급물품 해쉬값
+      </mat-panel-title>
+      <mat-panel-description>
+      원산지 확인 요청을 받은 물품의 해쉬값
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{parsearray[10]}}</p>
   </mat-expansion-panel>
 
    <mat-expansion-panel (opened)="panelOpenState = true"
@@ -237,7 +276,7 @@
       원산지 확인서를 작성한 사람의 이름
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{parsearray[8]}}</p>
+    <p>{{parsearray[11]}}</p>
   </mat-expansion-panel>
 
      <mat-expansion-panel (opened)="panelOpenState = true"
@@ -250,7 +289,7 @@
       원산지 확인서를 작성한 사람의 직위
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{parsearray[9]}}</p>
+    <p>{{parsearray[12]}}</p>
   </mat-expansion-panel>
 
        <mat-expansion-panel (opened)="panelOpenState = true"
@@ -263,7 +302,7 @@
       원산지 확인서를 작성한 사람의 회사명
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{parsearray[10]}}</p>
+    <p>{{parsearray[13]}}</p>
   </mat-expansion-panel>
 
          <mat-expansion-panel (opened)="panelOpenState = true"
@@ -276,7 +315,7 @@
       원산지 확인서를 작성한 사람의 회사 주소
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{parsearray[11]}}</p>
+    <p>{{parsearray[14]}}</p>
   </mat-expansion-panel>
 
          <mat-expansion-panel (opened)="panelOpenState = true"
@@ -289,7 +328,7 @@
       원산지 확인서를 작성한 사람의 이메일
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{parsearray[12]}}</p>
+    <p>{{parsearray[15]}}</p>
   </mat-expansion-panel>
 
 </mat-accordion>
@@ -308,7 +347,7 @@
       원산지 확인서를 작성한 날짜
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{parsearray[13]}}</p>
+    <p>{{parsearray[16]}}</p>
   </mat-expansion-panel>
 
              <mat-expansion-panel (opened)="panelOpenState = true"
@@ -321,7 +360,7 @@
       원산지 확인서를 작성 요청한 시스템
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p> {{parsearray[14]}} </p>
+    <p> {{parsearray[17]}} </p>
   </mat-expansion-panel>
 
              <mat-expansion-panel (opened)="panelOpenState = true"
@@ -334,7 +373,7 @@
       원산지 확인서의 해쉬값 
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{parsearray[15]}}</p>
+    <p>{{parsearray[18]}}</p>
   </mat-expansion-panel>
 
 </mat-accordion>
