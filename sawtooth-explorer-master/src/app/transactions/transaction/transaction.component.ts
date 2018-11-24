@@ -159,7 +159,7 @@ export class TransactionComponent implements OnInit, OnChanges {
       // 없다 - 인증서나 세팅 블록임. 어레이는 0과 1 두개뿐일 것. 유의미한 정보를 담고 있는건 1 하나뿐.
       this.flag = true;
 
-      if(regx2.test(array[0])) { // 세팅 블록인 경우
+      if(regx2.test(array[1])) { // 세팅 블록인 경우
         this.firstBlock = true;
         // 첫 블록은 담을 게 없음.. 그냥 세팅 블록인 것만 표시할 것.
       }
