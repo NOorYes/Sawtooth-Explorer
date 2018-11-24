@@ -212,10 +212,6 @@ export class TransactionComponent implements OnInit, OnChanges {
   }
 }
 
-export class ExpansionOverviewExample {
-  panelOpenState: boolean = false;
-}
-
 /*
 export interface Element {
   name: string;
