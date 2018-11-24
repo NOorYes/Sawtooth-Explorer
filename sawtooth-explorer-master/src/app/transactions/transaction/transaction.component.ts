@@ -44,6 +44,7 @@ export class TransactionComponent implements OnInit, OnChanges {
   testdata; // 테스트용, 이걸로 파싱할 예정. 
   parsearray : string[] = []; // 파싱한 값을 담은 어레이.
   flag = false; // 확인서인지 인증서인지 
+  firstBlock = false;
   //ELEMENT_DATA: Element[];
 
   //displayedColumns = ['position', 'name'];
@@ -102,10 +103,12 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray = []; // 배열 초기화
     let array = this.testdata.split('\\n');
     let regx = /([A-Z])\w+[-]\d/g;
+    let regx2 = /&sawtooth./g; // 설정 블록인지 확인하는 용도
     // 여기서 미리 찾아봄. 0번째 어레이에 발급번호가 있는지 없는지.
 
     if(regx.test(array[0])) {
     // 있다 - 확인서이므로 그대로 진행 
+    this.firstBlock = false;
     this.flag = false; // true 인 경우 인증서, 아닌 경우 확인서 
     console.log(array[0]); // 테스트용 - 발급번호를 추출해야됨. 발급사유도 있는데 그건 스킵.
     console.log(array[1]); // 테스트용 추출값 - 발급일시 / 공급회사 코드 / 공급회사명 / 사업자등록번호
@@ -153,8 +156,15 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray[15] = array[2].match(/[A-Fa-f0-9]{32}/g); // 해쉬 
     }
     else{
-      // 없다 - 인증서임. 어레이는 0과 1 두개뿐일 것. 유의미한 정보를 담고 있는건 1 하나뿐.
+      // 없다 - 인증서나 세팅 블록임. 어레이는 0과 1 두개뿐일 것. 유의미한 정보를 담고 있는건 1 하나뿐.
       this.flag = true;
+
+      if(regx2.test(array[0])) { // 세팅 블록인 경우
+        this.firstBlock = true;
+        // 첫 블록은 담을 게 없음.. 그냥 세팅 블록인 것만 표시할 것.
+      }
+      else { // 인증서인 경우
+      this.firstBlock = false;
       console.log(array[0]); // 쓸데없는 정보
       console.log(array[1]); // 유효정보. 
       // 추출값 - 공급회사 코드 / 이메일 / 공개키
@@ -164,6 +174,13 @@ export class TransactionComponent implements OnInit, OnChanges {
       this.parsearray[1] = this.parsearray[1].toString().replace("u0011", "");
       this.parsearray[2] = array[1].match(/u001a[A-Fa-f0-9]+\d/g); // 공개키
       this.parsearray[2] = this.parsearray[2].toString().replace("u001a", "");
+      }
+
+      /*
+      * u0012[A-Fa-f0-9]+\d[a-f] : u0012B03205e8e73baae7c64c9089dd0f6234d3a668329c977f013929ab0ddfa4afadc2d
+      * &sawtooth. : &sawtooth.settings.vote.authorized_keys
+      * 0x[a-z1-9]+ : 0x971737bf4b74e665
+      */
     }
   }
 /*

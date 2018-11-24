@@ -77,7 +77,7 @@
 
 <h3 class="h3">Parsing</h3>
 
-<div *ngIf = "flag == true">
+<div *ngIf = "flag == true && firstBlock == false">
   <mat-accordion>
            <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
@@ -121,7 +121,7 @@
 </mat-accordion>
   </div>
 
-  <div *ngIf = "flag == false">
+  <div *ngIf = "flag == false && firstBlock == false">
 <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
@@ -340,11 +340,8 @@
 </mat-accordion>
 </div>
 
-<hr/>
-
-  <div id="img_container">
-
-   <h3 class="h3">Form Viewer</h3>
-   <img src="assets/images/form.gif"  alt="form" />
-
-  </div>
+<div *ngIf = "firstBlock == true">
+<p>
+  해당 블록은 초기 세팅 블록입니다!
+</p>
+</div>
