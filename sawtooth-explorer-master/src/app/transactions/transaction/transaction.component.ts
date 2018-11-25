@@ -136,7 +136,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray[6] =  this.parsearray[6].toString().slice(0, -1);
     this.parsearray[7] = array[1].match(/\d{3}-\d{3,4}-\d{4}j/g); // 공급회사 팩스번호
     this.parsearray[7] =  this.parsearray[7].toString().slice(0, -1);
-    this.parsearray[8] = array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)Â/g); // 공급회사 주소
+    this.parsearray[8] = array[1].match(/((([가-힣]+(시|도)|[서울]|[인천]|[대구]|[광주]|[부산]|[울산])( |)[가-힣]+(시|군|구)( |))[가-힣]+([가-힣]|(\d{1,5}(~|-)\d{1,5})|\d{1,5})+(로|길)( |)(\d)+)r/g); // 공급회사 주소
     this.parsearray[8] =  this.parsearray[8].toString().slice(0, -1); // 값이 없어서 오류남
     this.parsearray[9] = array[1].match(/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}º/g); // 공급회사 이메일
     this.parsearray[9] = this.parsearray[9].toString().replace("u0011", "");
