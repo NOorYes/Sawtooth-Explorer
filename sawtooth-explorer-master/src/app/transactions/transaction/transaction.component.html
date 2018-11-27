@@ -77,7 +77,7 @@
 
 <h3 class="h3">Parsing</h3>
 
-<div *ngIf = "flag == true && firstBlock == false">
+<div *ngIf = "flag == true && firstBlock == false && data.header.family_name != 'sawtooth_identity'">
   <mat-accordion>
            <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
@@ -121,7 +121,7 @@
 </mat-accordion>
   </div>
 
-  <div *ngIf = "flag == false && firstBlock == false">
+  <div *ngIf = "flag == false && firstBlock == false && data.header.family_name != 'sawtooth_identity'">
 <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
@@ -379,7 +379,7 @@
 </mat-accordion>
 </div>
 
-<div *ngIf = "firstBlock == true">
+<div *ngIf = "firstBlock == true || data.header.family_name == 'sawtooth_identity'">
 <p>
   해당 블록은 초기 세팅 블록입니다!
 </p>
