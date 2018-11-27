@@ -130,7 +130,7 @@ export class TransactionComponent implements OnInit, OnChanges {
     this.parsearray[3] = array[1].match(/[가-힣]+J/g); // 공급회사명
     this.parsearray[3] =  this.parsearray[3].toString().slice(0, -1); 
     this.parsearray[4] = array[1].match(/\d{3}-\d{2}-\d{5}/g); // 사업자 등록번호
-    this.parsearray[5] = array[1].match(/[가-힣]+Z/g); // 대표자명
+    this.parsearray[5] = array[1].match(/[가-힣A-Z]+Z/g); // 대표자명
     this.parsearray[5] =  this.parsearray[5].toString().slice(0, -1);
     this.parsearray[6] = array[1].match(/\d{3}-\d{3,4}-\d{4}b/g); // 공급회사 전화번호
     this.parsearray[6] =  this.parsearray[6].toString().slice(0, -1);
